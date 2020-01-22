@@ -54,14 +54,14 @@ public class grapEsunRate extends HttpServlet {
 			out.println("Get End date id unsuccessful");
 		}else {
 			try {
-				out.println(parser(countryId,startDate,endDate));
+				out.println(getRate(countryId,startDate,endDate));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	protected String parser(String currency, String startData, String endData) throws Exception {
+	protected String getRate(String currency, String startData, String endData) throws Exception {
 		
 		String gtCurrency = currency;
 		String gtCurrencytype = "1";
@@ -70,6 +70,8 @@ public class grapEsunRate extends HttpServlet {
 		String gtEnddate = endData;
 
 		final String URL = "https://www.esunbank.com.tw/bank/Layouts/esunbank/Deposit/DpService.aspx/GetLineChartJson";
+		//how can I get json data
+		//https://stackoverflow.com/questions/27326573/how-to-find-the-link-for-json-data-of-a-certain-website
 		HttpURLConnection connection = null;
 
 		try {
@@ -97,7 +99,7 @@ public class grapEsunRate extends HttpServlet {
 			out.write(obj.toString().getBytes());
 			out.flush();
 			out.close();
-
+			//get data input
 			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String lines;
 			StringBuffer sb = new StringBuffer("");
@@ -108,7 +110,7 @@ public class grapEsunRate extends HttpServlet {
 			reader.close();
 			connection.disconnect();
 			
-			//get Rate data
+			//put Rate data in json
 			JSONObject jsonSbObj = new JSONObject(sb.toString());
 			JSONObject rateSbObj = new JSONObject(jsonSbObj.getString("d").toString());
 			System.out.println(rateSbObj.getString("Rates"));
