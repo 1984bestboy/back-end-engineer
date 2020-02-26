@@ -109,9 +109,9 @@
 			Country: <select id="countryId" name="countryId" size="3">
 				<option value="USD">美元(USD)</option>
 				<option value="CNY">人民幣(CNY)</option>
-				<option value="AUD">澳幣(AUD)</option>
-				<option value="ZAR">南非幣(ZAR)</option>
-				<option value="NZD">紐西蘭幣(NZD)</option>
+				<option value="HKD">港幣(HKD)</option>
+				<option value="GBP">英鎊(GBP)</option>
+				<option value="CAD">加幣(CAD)</option>
 			</select>
 		
 			Start Date: <input id="startDate" name="startDate" type="text"/>&nbsp;
